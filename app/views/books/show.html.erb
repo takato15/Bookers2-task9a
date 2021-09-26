@@ -2,9 +2,9 @@
   <div class='row'>
     <div class='col-md-3'>
       <h2>User info</h2>
-      <%= render 'users/info' %>
+      <%= render 'users/info', user: @book.user %>
       <h2 class="mt-3">New book</h2>
-      <%= render 'form', book: @book %>
+      <%= render 'form', book: @book, book: Book.new %>
     </div>
     <div class='col-md-8 offset-md-1'>
   		<h2>Book detail</h2>
@@ -15,10 +15,12 @@
             <%= @book.user.name %>
             <% end %>
           </td>
-          <td><%= link_to @book.title, book_path(@book) %></td>
+          <td><%= link_to @book.title, book_path(@book.user) %></td>
           <td><%= @book.body %></td>
-          <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
-          <td><%= link_to 'Destroy', book_path(@book), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
+           <% if @book.user.id == current_user.id %>
+            <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
+            <td><%= link_to 'Destroy', book_path(@book), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
+          <% end %>
         </tr>
       </table>
     </div>
