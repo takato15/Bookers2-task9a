@@ -17,12 +17,55 @@
           </td>
           <td><%= link_to @book.title, book_path(@book.user) %></td>
           <td><%= @book.body %></td>
+
+
+
            <% if @book.user.id == current_user.id %>
-            <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
-            <td><%= link_to 'Destroy', book_path(@book), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
-          <% end %>
+              <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
+              <td><%= link_to 'Destroy', book_path(@book), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
+            <% else %>
+              <td><% if @book.favorited_by?(current_user) %>
+                    <p>
+                      <%= link_to book_favorites_path(@book), method: :delete do %>
+                        ♥<%= @book.favorites.count %>
+                      <% end %>
+                    </p>
+                  <% else %>
+                    <p>
+                      <%= link_to book_favorites_path(@book), method: :post do %>
+                        ♡<%= @book.favorites.count %>
+                      <% end %>
+                    </p>
+                  <% end %>
+              </td>
+              <td><p>コメント件数：<%= @book.post_comments.count %></p></td>
+            <% end %>
         </tr>
       </table>
+      <div>
+        <% @book.post_comments.each do |post_comment| %>
+          <td><%= link_to user_path(post_comment.user) do %>
+          <%= attachment_image_tag(@book.user, :profile_image, :fill, 100, 100, fallback: "no-image-icon.jpg") %><br>
+            <%= post_comment.user.name %>
+            <% end %>
+          </td>
+          <td>
+        <%= post_comment.comment %>
+        </td>
+         <% if post_comment.user == current_user %>
+          <td>
+            <%= link_to "Destroy", book_post_comment_path(post_comment.book, post_comment), method: :delete %>
+          </td>
+        <% end %>
+        <% end %>
+      </div>
+
+      <div>
+        <%= form_with(model:[@book, @post_comment], local: true) do |f| %>
+        <%= f.text_area :comment, rows:'5' %>
+        <%= f.submit "送信する" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
