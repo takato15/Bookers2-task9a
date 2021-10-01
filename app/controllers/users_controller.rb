@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   before_action :ensure_correct_user, only: [:update]
 
   def show
@@ -43,4 +44,5 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
+
 end
