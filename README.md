@@ -1,5 +1,11 @@
 # README
-応用課題６
+
+
+応用課題7a
+本の投稿一覧ページで、過去一週間でいいねの合計カウントが多い順に投稿を表示
+
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
