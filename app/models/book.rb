@@ -15,6 +15,10 @@ class Book < ApplicationRecord
     favorites.where(user_id: user.id).exists?
   end
 
+  # def Book.last_week # メソッド名は何でも良いです
+    # Book.joins(:favorites).where(favorites: { created_at: 0.days.ago.prev_week..0.days.ago.prev_week(:sunday)}).group(:id).order("count(*) desc")
+  # end
+
   def Book.search(search, model, how)
     if how == "partical"
   	  Book.where("title LIKE ?", "%#{search}%")
