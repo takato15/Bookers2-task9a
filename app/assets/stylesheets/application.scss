@@ -38,7 +38,22 @@ div {
   }
 }
 
-#followbutton {
-  color: #FFFFFF;
-  background-color: lightgreen;
+.fbtn {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+  padding: 2px 4px 2px 4px;
+  margin-top: 3px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.chat-btn {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+  padding: 2px 4px 2px 4px;
+  margin-top: 3px;
+  font-size: 1rem;
+  box-sizing: border-box;
 }
