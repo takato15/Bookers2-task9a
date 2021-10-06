@@ -1,7 +1,6 @@
 class Room < ApplicationRecord
 
-  belongs_to :user
-  belongs_to :second_user, class_name: 'User'
-  has_many :messages
+  has_many :chats
+  has_many :user_rooms
 
 end

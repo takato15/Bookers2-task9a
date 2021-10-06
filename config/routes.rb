@@ -7,9 +7,8 @@ Rails.application.routes.draw do
   resources :searches, only: [:index]
   # post 'conversations/create' => 'conversations#create'
 
-  resources :conversations do
-    resources :messages
-  end
+  get 'chat/:id', to: 'chats#show', as: 'chat'
+  resources :chats, only: [:create]
 
   resources :users,only: [:show,:index,:edit,:update] do
       resource :relationships, only: [:create, :destroy]
