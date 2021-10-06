@@ -28,8 +28,8 @@
     <th>followers</th>
     <th>
 	    <p>
-        <%= link_to user_followings_path(user) do %>
-          <%= user.followings.count %>
+        <%= link_to user_followers_path(user) do %>
+          <%= user.followers.count %>
         <% end %>
       </p>
     </th>

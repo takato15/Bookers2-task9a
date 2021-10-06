@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ConversationsControllerTest < ActionDispatch::IntegrationTest
+class RoomTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
