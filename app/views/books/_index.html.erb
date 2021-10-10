@@ -10,7 +10,7 @@
   </thead>
   <tbody>
     <% books.each do |book| %>
-      <tr id="favorite_<%= book.id %>">
+      <tr id="book_<%= book.id %>">
 
         <%= render "favorites/favorites", book: book %>
 
